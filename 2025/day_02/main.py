@@ -1,3 +1,6 @@
+import time
+
+
 def read_file(input_file):
     with open(input_file, "r", encoding="utf-8") as f:
         data = f.read()
@@ -200,17 +203,45 @@ def test_invalid_id():
     print(is_invalid_id2("824824824"))
     print(is_invalid_id2("2121212121"))
 
+
 def main():
     ranges_small = read_file("small_input.txt")
     ranges_normal = read_file("input.txt")
-    ranges_test = read_file("test.txt")
 
-    print("******* PART 1 *******")
-    print("small", part_one(ranges_small, False) == 1227775554)
-    print("normal", part_one(ranges_normal, False))
+    print("=" * 60)
+    print("PART 1: Half-Repeat Patterns")
+    print("=" * 60)
 
-    print("******* PART 2 *******")
-    print("small", part_two(ranges_small, False) == 4174379265)
-    print("normal:", part_two(ranges_normal, False))
+    start = time.time()
+    small_result = part_one(ranges_small, False)
+    small_time = time.time() - start
+    print(f"Small input:  {small_result:>12,} (expected: 1,227,775,554) [{small_time*1000:.2f}ms]")
+    assert small_result == 1227775554, f"Expected 1227775554, got {small_result}"
+
+    start = time.time()
+    normal_result = part_one(ranges_normal, False)
+    normal_time = time.time() - start
+    print(f"Normal input: {normal_result:>12,} (expected: 28,146,997,880) [{normal_time*1000:.2f}ms]")
+    assert normal_result == 28146997880, f"Expected 28146997880, got {normal_result}"
+
+    print("\n" + "=" * 60)
+    print("PART 2: Any Repeating Pattern")
+    print("=" * 60)
+
+    start = time.time()
+    small_result = part_two(ranges_small, False)
+    small_time = time.time() - start
+    print(f"Small input:  {small_result:>12,} (expected: 4,174,379,265) [{small_time*1000:.2f}ms]")
+    assert small_result == 4174379265, f"Expected 4174379265, got {small_result}"
+
+    start = time.time()
+    normal_result = part_two(ranges_normal, False)
+    normal_time = time.time() - start
+    print(f"Normal input: {normal_result:>12,} (expected: 40,028,128,307) [{normal_time*1000:.2f}ms]")
+    assert normal_result == 40028128307, f"Expected 40028128307, got {normal_result}"
+
+    print("\n" + "=" * 60)
+    print("✓ All tests passed!")
+    print("=" * 60)
 
 main()
