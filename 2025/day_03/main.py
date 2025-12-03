@@ -31,7 +31,6 @@ def part_one(input_file):
     with open(input_file, 'r') as file:
         for line in file:
             r = find_highest_batteries(line.strip())
-            print(r)
             res += r
     return res
 
@@ -89,7 +88,34 @@ def part_two(input_file):
     return res
 
 def main():
-    print(part_one("input.txt"))
-    print(part_two("input.txt"))
+    import time
+
+    # Expected answers
+    EXPECTED_PART1 = 16858
+    EXPECTED_PART2 = 167549941654721
+
+    print("=" * 60)
+    print("Original Solution")
+    print("=" * 60)
+
+    # Part 1
+    print("\nPart 1:")
+    start = time.perf_counter()
+    result1 = part_one("input.txt")
+    elapsed = time.perf_counter() - start
+    print(f"  Time: {elapsed * 1000:.3f} ms")
+    status1 = "✓" if result1 == EXPECTED_PART1 else "✗"
+    print(f"  Answer: {result1} {status1}")
+
+    # Part 2
+    print("\nPart 2:")
+    start = time.perf_counter()
+    result2 = part_two("input.txt")
+    elapsed = time.perf_counter() - start
+    print(f"  Time: {elapsed * 1000:.3f} ms")
+    status2 = "✓" if result2 == EXPECTED_PART2 else "✗"
+    print(f"  Answer: {result2} {status2}")
+
+    print("\n" + "=" * 60)
 
 main()
